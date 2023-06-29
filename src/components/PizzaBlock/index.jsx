@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type';
 import React, { useState } from 'react';
 
 function PizzaBlock(props) {
@@ -17,7 +16,7 @@ function PizzaBlock(props) {
       <h4 className="pizza-block__title">{props.title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {props.type.map((type) => (
+          {props.types.map((type) => (
             <li
               key={type}
               onClick={() => setActiveType(type)}
