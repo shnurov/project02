@@ -9,6 +9,12 @@
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 602px) {
+      &>a {
+        display: none;
+    }
+  }
+
     @media (max-width: 530px) {
       justify-content: space-around;
     }
@@ -29,7 +35,7 @@
       text-transform: uppercase;
       font-weight: 800;
 
-      @media (max-width: 530px) {
+      @media (max-width: 850px) {
         display: none;
       }
     }
@@ -37,7 +43,7 @@
     p {
       color: #7b7b7b;
 
-      @media (max-width: 650px) {
+      @media (max-width: 950px) {
         display: none;
       }
 
