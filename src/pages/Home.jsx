@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 import Categories from '../components/Caregories';
 import Sort from '../components/Sort';
@@ -26,16 +27,29 @@ const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     setIsLoading(true);
-    fetch(
-      `https://6499916579fbe9bcf83f813c.mockapi.io/items?${
-        categoryId > 0 ? `category=${categoryId}` : ''
-      }&sortBy=${sort.sortProperty}&order=aesc${search}`,
-    )
-      .then((res) => res.json())
-      .then((arr) => {
-        setItems(arr);
+
+    // fetch(
+    //   `https://6499916579fbe9bcf83f813c.mockapi.io/items?${
+    //     categoryId > 0 ? `category=${categoryId}` : ''
+    //   }&sortBy=${sort.sortProperty}&order=aesc${search}`,
+    // )
+    //   .then((res) => res.json())
+    //   .then((arr) => {
+    //     setItems(arr);
+    //     setIsLoading(false);
+    //   });
+
+    axios
+      .get(
+        `https://6499916579fbe9bcf83f813c.mockapi.io/items?${
+          categoryId > 0 ? `category=${categoryId}` : ''
+        }&sortBy=${sort.sortProperty}&order=aesc${search}`,
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
       });
+
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty]);
 
