@@ -18,6 +18,7 @@ export const cartSlice = createSlice({
 
     addItem(state, action) {
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
+
       if (findItem) {
         findItem.count++;
       } else {
@@ -31,16 +32,31 @@ export const cartSlice = createSlice({
       }, 0);
     },
 
+    // plusItem(state, action) {
+    //   const findItem = state.items.find((obj) => obj.id === action.payload);
+    //   if (findItem) {
+    //     findItem.count++;
+    //   }
+    // },
+
+    minusItem(state, action) {
+      const findItem = state.items.find((obj) => obj.id === action.payload);
+      if (findItem) {
+        findItem.count--;
+      }
+    },
+
     removeItem(state, action) {
       state.items = state.items.filter((obj) => obj.id !== action.payload);
     },
     clearItems(state) {
       state.items = [];
+      state.totalPrice = 0;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addItem, removeItem, clearItems } = cartSlice.actions;
+export const { addItem, removeItem, clearItems, minusItem } = cartSlice.actions;
 
 export default cartSlice.reducer;
